@@ -1,23 +1,5 @@
-from typing import Protocol, Union
-
 from ..trig.trig_module import TrigModule
 from ..log.log_module import LogModule
-
-
-class TrigProvider(Protocol):
-    def sin(self, x: float) -> float: ...
-    def cos(self, x: float) -> float: ...
-    def tan(self, x: float) -> float: ...
-    def cot(self, x: float) -> float: ...
-    def sec(self, x: float) -> float: ...
-    def csc(self, x: float) -> float: ...
-
-
-class LogProvider(Protocol):
-    def ln(self, x: float) -> float: ...
-    def log3(self, x: float) -> float: ...
-    def log5(self, x: float) -> float: ...
-    def log10(self, x: float) -> float: ...
 
 
 class DomainError(Exception):
@@ -28,8 +10,8 @@ class DomainError(Exception):
 class SystemFunction:
     def __init__(
         self,
-        trig: Union[TrigModule, TrigProvider] = None,
-        log: Union[LogModule, LogProvider] = None,
+        trig = None,
+        log = None,
     ):
         self._trig = trig or TrigModule()
         self._log = log or LogModule()
