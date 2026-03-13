@@ -1,4 +1,3 @@
-"""Pytest configuration: add lab2 to path."""
 import sys
 from pathlib import Path
 

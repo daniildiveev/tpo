@@ -1,14 +1,10 @@
-"""Trigonometric functions expressed through sin(x)."""
-
 from ..base.sin_series import sin_series
 
-PI = 3.14159265358979323846
+PI = 3.14159265358
 PI_HALF = PI / 2
 
 
 class TrigModule:
-    """Trigonometric module: cos, tan, cot, sec, csc via sin series."""
-
     def __init__(self, epsilon: float = 1e-10):
         self._epsilon = epsilon
 

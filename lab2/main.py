@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""CLI for system function: compute and export to CSV."""
 
 import argparse
 import sys
 from pathlib import Path
 
-# Add lab2 to path for imports
 lab2_dir = Path(__file__).parent
 sys.path.insert(0, str(lab2_dir))
 

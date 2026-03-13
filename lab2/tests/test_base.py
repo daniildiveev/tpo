@@ -1,5 +1,3 @@
-"""Tests for base modules: sin_series, ln_series."""
-
 import math
 import pytest
 
@@ -8,7 +6,7 @@ from src.base.ln_series import ln_series
 
 TIGHT = 1e-6
 MED = 1e-4
-PI = 3.14159265358979323846
+PI = 3.14159265358
 
 
 class TestSinSeriesKnownValues:

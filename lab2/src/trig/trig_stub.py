@@ -1,9 +1,5 @@
-"""Table-based stub for trigonometric module."""
-
 import math
 
-# Precomputed table: x values (radians) for x <= 0, and sin, cos, tan, cot, sec, csc
-# Domain: x in [-4*pi, 0], excluding n*pi and pi/2 + n*pi
 _STUB_POINTS = [
     -6 * math.pi, -5.5 * math.pi, -5 * math.pi, -4.5 * math.pi, -4 * math.pi,
     -3.5 * math.pi, -3 * math.pi, -2.5 * math.pi, -2 * math.pi, -1.5 * math.pi,
@@ -33,7 +29,6 @@ _STUB_X_SORTED = sorted(_STUB_TABLE.keys())
 
 
 def _find_nearest(x: float) -> float:
-    """Find nearest table point to x."""
     if not _STUB_X_SORTED:
         raise ValueError("Empty stub table")
     lo, hi = _STUB_X_SORTED[0], _STUB_X_SORTED[-1]
@@ -51,8 +46,6 @@ def _find_nearest(x: float) -> float:
 
 
 class TrigStub:
-    """Table-based stub returning precomputed trig values."""
-
     def sin(self, x: float) -> float:
         x_key = _find_nearest(x)
         return _STUB_TABLE[x_key]["sin"]

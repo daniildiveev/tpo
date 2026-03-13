@@ -1,8 +1,5 @@
-"""ln(x) via series expansion. No use of math.log or log identities."""
-
-
 def _ln_1_plus_u(u: float, epsilon: float, max_terms: int) -> float:
-    """ln(1+u) = u - u²/2 + u³/3 - ... for |u| < 1."""
+    """ln(1+u) = u - u^2/2 + u^3/3 - ... for |u| < 1."""
     if abs(u) >= 1:
         raise ValueError("|u| must be < 1 for ln(1+u) series")
     result = 0.0
@@ -39,7 +36,7 @@ def ln_series(x: float, epsilon: float = 1e-10, max_terms: int = 10000) -> float
     if x <= 0:
         raise ValueError("ln(x) requires x > 0")
 
-    # ln(2) = -ln(0.5), ln(1-u) = -u - u²/2 - u³/3 - ... for |u| < 1
+    # ln(2) = -ln(0.5), ln(1-u) = -u - u^2/2 - u^3/3 - ... for |u| < 1
     def _ln_half(eps: float) -> float:
         r = 0.0
         u = 0.5

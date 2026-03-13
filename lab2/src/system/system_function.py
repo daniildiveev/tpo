@@ -1,9 +1,3 @@
-"""
-System function:
-  x <= 0: trigonometric branch
-  x > 0:  logarithmic branch
-"""
-
 from typing import Protocol, Union
 
 from ..trig.trig_module import TrigModule
@@ -28,13 +22,10 @@ class LogProvider(Protocol):
 
 class DomainError(Exception):
     """Raised when x is outside domain or at singular points."""
-
     pass
 
 
 class SystemFunction:
-    """Main system function with configurable trig and log modules."""
-
     def __init__(
         self,
         trig: Union[TrigModule, TrigProvider] = None,
@@ -44,14 +35,6 @@ class SystemFunction:
         self._log = log or LogModule()
 
     def compute(self, x: float) -> float:
-        """
-        Compute system function at x.
-        x <= 0: trigonometric branch
-        x > 0:  logarithmic branch
-
-        Raises:
-            DomainError: for singular points (sin=0, cos=0, ln=0)
-        """
         if x <= 0:
             return self._trig_branch(x)
         else:

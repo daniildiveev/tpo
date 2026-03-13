@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
-"""Build plots from CSV export for the report. Requires matplotlib."""
 
 import argparse
 import csv
-import sys
-from pathlib import Path
 
-try:
-    import matplotlib.pyplot as plt
-except ImportError:
-    print("Install matplotlib: pip install matplotlib")
-    sys.exit(1)
+import matplotlib.pyplot as plt
 
 
 def main():
@@ -22,7 +15,7 @@ def main():
     xs, ys = [], []
     with open(args.csv_file, newline="") as f:
         reader = csv.reader(f)
-        next(reader)  # header
+        next(reader)
         for row in reader:
             try:
                 x, y = float(row[0]), float(row[1])

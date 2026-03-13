@@ -1,5 +1,3 @@
-"""Tests for logarithmic module."""
-
 import math
 import pytest
 

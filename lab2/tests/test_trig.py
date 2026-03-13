@@ -1,5 +1,3 @@
-"""Tests for trigonometric module."""
-
 import math
 import pytest
 
@@ -7,7 +5,7 @@ from src.trig.trig_module import TrigModule
 from src.trig.trig_stub import TrigStub
 
 TIGHT = 1e-6
-PI = 3.14159265358979323846
+PI = 3.14159265358
 
 
 class TestTrigModuleKnownValues:

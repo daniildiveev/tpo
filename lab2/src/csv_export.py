@@ -1,5 +1,3 @@
-"""Export system function results to CSV: X, Result."""
-
 import csv
 from pathlib import Path
 from typing import Union
@@ -16,21 +14,6 @@ def export_to_csv(
     delimiter: str = ",",
     skip_undefined: bool = True,
 ) -> int:
-    """
-    Export X, Result pairs to CSV file.
-
-    Args:
-        system_func: SystemFunction instance
-        x_start: Start of x range
-        x_end: End of x range
-        step: Step for x
-        path: Output file path
-        delimiter: CSV delimiter (default comma)
-        skip_undefined: If True, skip points where function is undefined
-
-    Returns:
-        Number of rows written
-    """
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
 

@@ -1,8 +1,5 @@
-"""Table-based stub for logarithmic module."""
-
 import math
 
-# Precomputed table for x > 0, x != 1 (ln(1)=0 causes division issues)
 _STUB_POINTS = [
     0.01, 0.1, 0.2, 0.5, 0.7, 0.9, 1.1, 1.5, 2.0, 3.0, 5.0, 10.0, 100.0,
 ]
@@ -27,7 +24,6 @@ _STUB_X_SORTED = sorted(_STUB_TABLE.keys())
 
 
 def _find_nearest(x: float) -> float:
-    """Find nearest table point to x."""
     if not _STUB_X_SORTED:
         raise ValueError("Empty stub table")
     lo, hi = _STUB_X_SORTED[0], _STUB_X_SORTED[-1]
@@ -45,8 +41,6 @@ def _find_nearest(x: float) -> float:
 
 
 class LogStub:
-    """Table-based stub returning precomputed log values."""
-
     def ln(self, x: float) -> float:
         if x <= 0:
             raise ValueError("ln(x) requires x > 0")

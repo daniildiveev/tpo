@@ -1,5 +1,3 @@
-"""Integration tests: full path from x to result, CSV export."""
-
 import csv
 import tempfile
 from pathlib import Path

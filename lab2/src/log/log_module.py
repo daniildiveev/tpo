@@ -1,11 +1,7 @@
-"""Logarithmic functions expressed through ln(x)."""
-
 from ..base.ln_series import ln_series
 
 
 class LogModule:
-    """Logarithmic module: log_3, log_5, log_10 via ln series."""
-
     def __init__(self, epsilon: float = 1e-10):
         self._epsilon = epsilon
         self._ln3 = ln_series(3.0, epsilon)
