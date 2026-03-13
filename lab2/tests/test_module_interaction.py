@@ -1,6 +1,5 @@
 import math
 from unittest.mock import MagicMock, call
-from unittest.mock import MagicMock, call
 
 import pytest
 
@@ -164,7 +163,6 @@ class TestSystemFunctionCombinesModuleOutputsCorrectly:
         sys_fn = SystemFunction(trig=trig, log=log)
         result = sys_fn.compute(-1.0)
 
-        # Manual formula: part1 = ((((a^2)^2 - c) + c) / sec), a = (s - csc) / sec
         a = (s - csc) / sec
         part1 = ((a * a) * (a * a) - c + c) / sec
         g = sec - (sec - sec)
@@ -214,13 +212,11 @@ class TestModuleIntegrationByOne:
     def test_integration_2_real_trig_stub_log(self):
         """Real TrigModule + LogStub: trig branch uses series, log branch uses table."""
         sys_fn = SystemFunction(trig=TrigModule(), log=LogStub())
-        # Trig branch: real computation
         r_neg = sys_fn.compute(-0.5)
         assert isinstance(r_neg, float)
-        # Log branch: stub
         r_pos = sys_fn.compute(2.0)
         assert isinstance(r_pos, float)
-        # Real trig + stub log should differ from all-stub (different precision)
+
         sys_stub = SystemFunction(trig=TrigStub(), log=LogStub())
         r_stub = sys_stub.compute(-0.5)
         assert r_neg != pytest.approx(r_stub, abs=1e-3) or abs(r_neg - r_stub) < 0.01
@@ -232,7 +228,7 @@ class TestModuleIntegrationByOne:
         r_pos = sys_fn.compute(2.0)
         assert isinstance(r_neg, float)
         assert isinstance(r_pos, float)
-        # Real log vs stub log should differ for log branch
+
         sys_stub = SystemFunction(trig=TrigStub(), log=LogStub())
         r_pos_stub = sys_stub.compute(2.0)
         assert r_pos == pytest.approx(r_pos_stub, abs=0.1)
@@ -240,7 +236,7 @@ class TestModuleIntegrationByOne:
     def test_integration_4_full_real_modules(self):
         """TrigModule + LogModule: full integration, both use series."""
         sys_fn = SystemFunction(trig=TrigModule(), log=LogModule())
-        # Cross-check: log branch formula (-ln)*(1 - 1/ln5) for x=2
+        
         r = sys_fn.compute(2.0)
         ln2 = math.log(2)
         ln5 = math.log(5)
