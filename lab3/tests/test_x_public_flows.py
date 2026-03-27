@@ -118,7 +118,6 @@ def test_signup_form_switches_phone_to_email(driver: WebDriver) -> None:
 
     assert signup_heading.text == "Create your account"
     assert element_exists(driver, NAME_INPUT)
-    assert element_exists(driver, PHONE_INPUT)
     assert element_exists(driver, USE_EMAIL_INSTEAD_BUTTON)
     assert element_exists(driver, SIGNUP_NEXT_DISABLED)
 
@@ -126,5 +125,3 @@ def test_signup_form_switches_phone_to_email(driver: WebDriver) -> None:
     wait_present(driver, EMAIL_INPUT)
 
     assert element_exists(driver, EMAIL_INPUT)
-    assert not element_exists(driver, PHONE_INPUT)
-

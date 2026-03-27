@@ -20,11 +20,3 @@
 | TC-03 | Отображение формы входа | UC-03 | High | Python Selenium | Видны `Sign in to X`, поле username, кнопки `Next`, `Forgot password?`, `Sign up` |
 | TC-04 | Переход к password reset flow | UC-04 | Medium | Python Selenium | После `Forgot password?` открывается экран `Find your X account` |
 | TC-05 | Открытие формы регистрации и переключение на email | UC-05, UC-06 | High | Python Selenium | После `Create account` открывается форма `Create your account`; `Use email instead` заменяет `Phone` на `Email` |
-
-## Что намеренно не покрыто
-
-- Вход через Google и Apple.
-- Завершение регистрации с подтверждением кода.
-- Публикация постов, поиск, взаимодействие с профилями и timeline после авторизации.
-
-Причина: такие сценарии требуют внешних провайдеров или учетных данных и плохо подходят для стабильного воспроизводимого лабораторного прогона.
