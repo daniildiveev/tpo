@@ -1,9 +1,31 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import pytest
 from selenium import webdriver
+
+
+def _load_env_file() -> None:
+    candidates = [
+        Path(__file__).resolve().parent / ".env",
+        Path(__file__).resolve().parent.parent / ".env",
+    ]
+    for path in candidates:
+        if not path.is_file():
+            continue
+        for line in path.read_text().splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            os.environ.setdefault(key, value)
+
+
+_load_env_file()
 
 
 CHROME_BINARY = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
@@ -69,4 +91,25 @@ def driver(request: pytest.FixtureRequest) -> webdriver.Remote:
 
     yield instance
     instance.quit()
+
+
+@pytest.fixture
+def credentials() -> dict[str, str]:
+    username = os.environ.get("X_USERNAME")
+    password = os.environ.get("X_PASSWORD")
+    if not username or not password:
+        pytest.skip("X_USERNAME / X_PASSWORD not set in environment or .env")
+    return {"username": username, "password": password}
+
+
+@pytest.fixture
+def auth_cookies() -> dict[str, str]:
+    token = os.environ.get("X_AUTH_TOKEN")
+    if not token:
+        pytest.skip("X_AUTH_TOKEN not set in environment or .env")
+    cookies = {"auth_token": token}
+    ct0 = os.environ.get("X_CT0")
+    if ct0:
+        cookies["ct0"] = ct0
+    return cookies
 
